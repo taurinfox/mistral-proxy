@@ -4,9 +4,9 @@ const axios = require("axios");
 require("dotenv").config();
 
 const app = express();
-const port = process.env.PORT || 3000;
-const apiKey = process.env.API_KEY;
+const port = process.env.PORT || 10000;
 
+const apiKey = process.env.API_KEY;
 const MISTRAL_API_BASE = "https://api.mistral.ai/v1";
 
 app.use(cors());
@@ -24,10 +24,12 @@ app.post("/v1/chat/completions", async (req, res) => {
         },
       }
     );
-    res.status(response.status).send(response.data);
+    res.status(response.status).json(response.data);
   } catch (error) {
     console.error("Error:", error.response?.status, error.response?.data);
-    res.status(error.response?.status || 500).send(error.response?.data || { error: "Unknown error" });
+    res.status(error.response?.status || 500).json(error.response?.data || {
+      error: "Unknown error",
+    });
   }
 });
 
