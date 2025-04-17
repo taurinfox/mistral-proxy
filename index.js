@@ -11,7 +11,7 @@ app.use(express.json());
 
 const MISTRAL_API_BASE = "https://api.mistral.ai";
 
-app.use("/v1", async (req, res) => {
+app.use("/", async (req, res) => {
   try {
     const url = `${MISTRAL_API_BASE}${req.originalUrl}`;
     const response = await axios({
