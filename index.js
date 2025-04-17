@@ -19,7 +19,7 @@ app.post("/v1/chat/completions", async (req, res) => {
       req.body,
       {
         headers: {
-          "Authorization": `Bearer ${apiKey}`,
+          Authorization: `Bearer ${apiKey}`,
           "Content-Type": "application/json",
         },
       }
@@ -27,9 +27,9 @@ app.post("/v1/chat/completions", async (req, res) => {
     res.status(response.status).json(response.data);
   } catch (error) {
     console.error("Error:", error.response?.status, error.response?.data);
-    res.status(error.response?.status || 500).json(error.response?.data || {
-      error: "Unknown error",
-    });
+    res
+      .status(error.response?.status || 500)
+      .json(error.response?.data || { error: "Unknown error" });
   }
 });
 
