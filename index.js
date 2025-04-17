@@ -9,7 +9,7 @@ const port = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 
-const MISTRAL_API_BASE = "https://api.mistral.ai/v1";
+const MISTRAL_API_BASE = "https://api.mistral.ai";
 
 app.use("/v1", async (req, res) => {
   try {
